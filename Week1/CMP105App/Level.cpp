@@ -5,9 +5,64 @@ Level::Level(sf::RenderWindow* hwnd)
 	window = hwnd;
 
 	// initialise game objects
-	rect.setSize(sf::Vector2f(50, 5));
-	rect.setPosition(100, 100);
-	rect.setFillColor(sf::Color::Red);
+	
+	// ----- Rectangles --------------------------------
+
+		// Blue Rectangle
+			rectBlue.setSize(sf::Vector2f(20, 20));
+			rectBlue.setPosition(300, 300);
+			rectBlue.setFillColor(sf::Color::Blue);
+
+			sf::Vector2f halfSizeB = rectBlue.getSize();
+			halfSizeB.x /= 2.0f;
+			halfSizeB.y /= 2.0f;
+
+			rectBlue.setOrigin(halfSizeB);
+
+		// Green Rectangle
+			rectGreen.setSize(sf::Vector2f(40, 40));
+			rectGreen.setPosition(300, 300);
+			rectGreen.setFillColor(sf::Color::Green);
+
+			sf::Vector2f halfSizeG = rectGreen.getSize();
+			halfSizeG.x /= 2.0f;
+			halfSizeG.y /= 2.0f;
+
+			rectGreen.setOrigin(halfSizeG);
+
+		// Red Rectangle
+			rectRed.setSize(sf::Vector2f(60, 60));
+			rectRed.setPosition(300, 300);
+			rectRed.setFillColor(sf::Color::Red);
+
+			sf::Vector2f halfSizeR = rectRed.getSize();
+			halfSizeR.x /= 2.0f;
+			halfSizeR.y /= 2.0f;
+
+			rectRed.setOrigin(halfSizeR);
+
+
+	// ----- Circles -----------------------------------
+		circle.setFillColor(sf::Color::Blue);
+		circle.setOutlineColor(sf::Color::Red);
+		circle.setOutlineThickness(4);
+		circle.setRadius(50);
+		circle.setPosition(550,300);
+
+	// ----- Text --------------------------------------
+		sf::Vector2f textPos;
+		textPos.x = 600.0f;
+		textPos.y = 5.0f;
+
+		if (!font.loadFromFile("font/arial.ttf")) {
+			std::cout << "ERROR LOADING FONT, PLS FIX :3" << std::endl;
+		}
+
+		text.setFont(font);
+		text.setString("Hello World!");
+		text.setCharacterSize(24);
+		text.setFillColor(sf::Color::Blue);
+		text.setPosition(textPos);
 }
 
 Level::~Level()
@@ -30,6 +85,15 @@ void Level::update()
 void Level::render()
 {
 	beginDraw();
+
+	// Render Shapes
+	window->draw(circle);
+	window->draw(rectRed);
+	window->draw(rectGreen);
+	window->draw(rectBlue);
+
+	// Render Text
+	window->draw(text);
 
 	endDraw();
 }
