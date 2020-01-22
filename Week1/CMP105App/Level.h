@@ -22,6 +22,7 @@ private:
 	sf::RectangleShape rectBlue;
 	sf::RectangleShape rectGreen;
 	sf::RectangleShape rectRed;
+	sf::RectangleShape rectMagenta;
 
 	sf::CircleShape circle;
 

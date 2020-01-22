@@ -41,6 +41,17 @@ Level::Level(sf::RenderWindow* hwnd)
 
 			rectRed.setOrigin(halfSizeR);
 
+		// Magenta Rectangle
+			rectMagenta.setSize(sf::Vector2f(40, 40));
+			rectMagenta.setPosition(1100, 600);
+			rectMagenta.setFillColor(sf::Color::Magenta);
+
+			sf::Vector2f halfSizeM = rectMagenta.getSize();
+			halfSizeM.x /= 2.0f;
+			halfSizeM.y /= 2.0f;
+
+			rectMagenta.setOrigin(halfSizeM);
+
 
 	// ----- Circles -----------------------------------
 		circle.setFillColor(sf::Color::Blue);
@@ -78,7 +89,8 @@ void Level::handleInput()
 // Update game objects
 void Level::update()
 {
-	
+	sf::Vector2u pos = window->getSize();
+	rectMagenta.setPosition((pos.x - 100), (pos.y - 50));
 }
 
 // Render level
@@ -91,6 +103,7 @@ void Level::render()
 	window->draw(rectRed);
 	window->draw(rectGreen);
 	window->draw(rectBlue);
+	window->draw(rectMagenta);
 
 	// Render Text
 	window->draw(text);
